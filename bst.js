@@ -129,4 +129,18 @@ export class Tree {
       }
     }
   }
+
+  find(value) {
+    let currentNode = this.root;
+    while (currentNode !== null && currentNode.value !== value) {
+      let comparison = this.comparison(value, currentNode.value);
+      if (comparison) {
+        currentNode = currentNode.left;
+      } else {
+        currentNode = currentNode.right;
+      }
+    }
+    if (currentNode) return currentNode;
+    return null;
+  }
 }
