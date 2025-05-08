@@ -15,9 +15,11 @@ class Node {
 export class Tree {
   root = null;
   buildTree(array) {
-    let sorted = mergesort(array, (left, right) => {
+    console.log(`Inputted array is ${JSON.stringify(array)}`);
+    let set = new Set(array);
+    let sorted = mergesort(Array.from(set), (left, right) => {
       return left < right;
     });
-    console.log(sorted);
+    console.log(`Sorted and deduplicated array is ${JSON.stringify(sorted)}`);
   }
 }
