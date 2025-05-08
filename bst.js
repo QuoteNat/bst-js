@@ -28,11 +28,14 @@ function balance(array) {
 
 export class Tree {
   root = null;
+  comparison = (left, right) => {
+    return left < right;
+  };
   buildTree(array) {
     let set = new Set(array);
-    let sorted = mergesort(Array.from(set), (left, right) => {
-      return left < right;
-    });
+    let sorted = mergesort(Array.from(set), this.comparison);
     this.root = balance(sorted);
   }
+
+  insert(value) {}
 }
