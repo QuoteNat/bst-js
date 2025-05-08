@@ -31,4 +31,13 @@ testTree.delete(8);
 prettyPrint(testTree.root);
 console.log("Find 6345: " + JSON.stringify(testTree.find(6345)));
 console.log("Find 88: " + testTree.find(88));
+console.log("Level order traversal:");
 testTree.levelOrder((node) => console.log(node.value));
+console.log("Preorder traversal:");
+testTree.preorder((node) => console.log(node.value));
+
+console.log("Inorder traversal:");
+testTree.inorder((node) => console.log(node.value));
+
+console.log("Postorder traversal:");
+testTree.postorder((node) => console.log(node.value));

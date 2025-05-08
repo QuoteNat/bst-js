@@ -155,4 +155,26 @@ export class Tree {
       callback(currentNode);
     }
   }
+
+  preorder(callback = null, node = this.root) {
+    if (callback == null) throw new Error("preorder requires a callback");
+    if (node === null) return;
+    callback(node);
+    this.preorder(callback, node.left);
+    this.preorder(callback, node.right);
+  }
+  inorder(callback = null, node = this.root) {
+    if (callback == null) throw new Error("inorder requires a callback");
+    if (node === null) return;
+    this.inorder(callback, node.left);
+    callback(node);
+    this.inorder(callback, node.right);
+  }
+  postorder(callback = null, node = this.root) {
+    if (callback == null) throw new Error("postorder requires a callback");
+    if (node === null) return;
+    this.postorder(callback, node.left);
+    this.postorder(callback, node.right);
+    callback(node);
+  }
 }
