@@ -41,3 +41,5 @@ testTree.inorder((node) => console.log(node.value));
 
 console.log("Postorder traversal:");
 testTree.postorder((node) => console.log(node.value));
+
+console.log("Height of root: " + testTree.height(23));

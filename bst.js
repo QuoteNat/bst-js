@@ -177,4 +177,22 @@ export class Tree {
     this.postorder(callback, node.right);
     callback(node);
   }
+
+  #heightHelper(node, depth) {
+    let leftHeight = depth;
+    let rightHeight = depth;
+    if (node.left != null) {
+      leftHeight = this.#heightHelper(node.left, depth + 1);
+    }
+    if (node.right != null) {
+      rightHeight = this.#heightHelper(node.right, depth + 1);
+    }
+    console.log;
+    return Math.max(leftHeight, rightHeight);
+  }
+  height(value) {
+    let node = this.find(value);
+    if (node == null) return null;
+    return this.#heightHelper(node, 0);
+  }
 }
