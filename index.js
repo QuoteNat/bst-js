@@ -20,3 +20,5 @@ prettyPrint(testTree.root);
 console.log("Inserting 100:");
 testTree.insert(100);
 prettyPrint(testTree.root);
+testTree.delete(9);
+prettyPrint(testTree.root);
