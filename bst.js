@@ -11,3 +11,13 @@ class Node {
     this.right = right;
   }
 }
+
+export class Tree {
+  root = null;
+  buildTree(array) {
+    let sorted = mergesort(array, (left, right) => {
+      return left < right;
+    });
+    console.log(sorted);
+  }
+}
