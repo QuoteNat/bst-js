@@ -229,4 +229,12 @@ export class Tree {
   isBalanced() {
     return this.#isBalancedHelper(this.root);
   }
+
+  rebalance() {
+    let values = [];
+    this.inorder((node) => {
+      values.push(node.value);
+    }, this.root);
+    this.buildTree(values);
+  }
 }

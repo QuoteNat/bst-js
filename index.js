@@ -58,3 +58,6 @@ testTree.insert(102);
 testTree.insert(103);
 prettyPrint(testTree.root);
 console.log(testTree.isBalanced());
+testTree.rebalance();
+prettyPrint(testTree.root);
+console.log(testTree.isBalanced());
