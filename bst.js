@@ -64,7 +64,6 @@ export class Tree {
     let previousNode = null;
     let currentNode = this.root;
     while (currentNode !== null && currentNode.value !== value) {
-      console.log(currentNode);
       let comparison = this.comparison(value, currentNode.value);
       previousNode = currentNode;
       if (comparison) {
@@ -75,13 +74,28 @@ export class Tree {
     }
     if (currentNode == null) return false;
     console.log(currentNode);
+    // Note, the code needs to remove the trees references
     // Case 1: leaf node/no child nodes
+    let comparison = this.comparison(value, previousNode.value);
     if (currentNode.left == null && currentNode.right == null) {
-      let comparison = this.comparison(value, previousNode.value);
       if (comparison) {
         previousNode.left = null;
       } else {
         previousNode.right = null;
+      }
+      return true;
+    } // Case 2: Single child
+    else if (currentNode.left != null && currentNode.right == null) {
+      if (comparison) {
+        previousNode.left = currentNode.left;
+      } else {
+        previousNode.right = currentNode.left;
+      }
+    } else if (currentNode.left == null && currentNode.right != null) {
+      if (comparison) {
+        previousNode.left = currentNode.right;
+      } else {
+        previousNode.right = currentNode.right;
       }
     }
   }

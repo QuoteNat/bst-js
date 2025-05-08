@@ -22,3 +22,5 @@ testTree.insert(100);
 prettyPrint(testTree.root);
 testTree.delete(9);
 prettyPrint(testTree.root);
+testTree.delete(324);
+prettyPrint(testTree.root);
