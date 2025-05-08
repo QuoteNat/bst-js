@@ -1,5 +1,8 @@
 import { mergesort } from "./odin-recursion/mergesort.js";
 
+/**
+ * Node class for use in binary trees
+ */
 class Node {
   value = null;
   left = null;
@@ -12,6 +15,11 @@ class Node {
   }
 }
 
+/**
+ * Creates a balanced BST from an array
+ * @param {*} array
+ * @returns the root node of the tree
+ */
 function balance(array) {
   // Base case
   if (array.length == 0) {
@@ -28,15 +36,32 @@ function balance(array) {
 
 export class Tree {
   root = null;
+
+  /**
+   * Comparison function
+   * @param {*} left
+   * @param {*} right
+   * @returns boolean
+   */
   comparison = (left, right) => {
     return left < right;
   };
+
+  /**
+   * Builds a new BST from the values in array
+   * @param {*} array
+   */
   buildTree(array) {
     let set = new Set(array);
     let sorted = mergesort(Array.from(set), this.comparison);
     this.root = balance(sorted);
   }
 
+  /**
+   * Inserts a new value into the binary tree
+   * @param {*} value
+   * @returns
+   */
   insert(value) {
     let currentNode = this.root;
     while (currentNode !== null) {
@@ -60,6 +85,12 @@ export class Tree {
     }
   }
 
+  /**
+   * Deletes a value from the binary tree
+   * @param {*} value
+   * @param {*} node
+   * @returns true if successful and false if the value is not in the tree
+   */
   delete(value, node = this.root) {
     let previousNode = null;
     let currentNode = node;
@@ -130,6 +161,11 @@ export class Tree {
     }
   }
 
+  /**
+   * Finds a value in the binary tree
+   * @param {*} value
+   * @returns The node containing the value, or null if it isn't found
+   */
   find(value) {
     let currentNode = this.root;
     while (currentNode !== null && currentNode.value !== value) {
@@ -144,6 +180,10 @@ export class Tree {
     return null;
   }
 
+  /**
+   * Performs the callback on all nodes in the tree in levelorder
+   * @param {*} callback
+   */
   levelOrder(callback = null) {
     if (callback == null) throw new Error("levelOrder requires a callback");
 
@@ -156,6 +196,10 @@ export class Tree {
     }
   }
 
+  /**
+   * Performs the callback on all nodes in the tree in preorder
+   * @param {*} callback
+   */
   preorder(callback = null, node = this.root) {
     if (callback == null) throw new Error("preorder requires a callback");
     if (node === null) return;
@@ -163,6 +207,11 @@ export class Tree {
     this.preorder(callback, node.left);
     this.preorder(callback, node.right);
   }
+
+  /**
+   * Performs the callback on all nodes in the tree in order
+   * @param {*} callback
+   */
   inorder(callback = null, node = this.root) {
     if (callback == null) throw new Error("inorder requires a callback");
     if (node === null) return;
@@ -170,6 +219,11 @@ export class Tree {
     callback(node);
     this.inorder(callback, node.right);
   }
+
+  /**
+   * Performs the callback on all nodes in the tree in postorder
+   * @param {*} callback
+   */
   postorder(callback = null, node = this.root) {
     if (callback == null) throw new Error("postorder requires a callback");
     if (node === null) return;
@@ -178,6 +232,12 @@ export class Tree {
     callback(node);
   }
 
+  /**
+   * Recursive helper function for finding height of a node
+   * @param {*} node
+   * @param {*} depth
+   * @returns
+   */
   #heightHelper(node, depth) {
     if (node == null) return true;
 
@@ -192,12 +252,23 @@ export class Tree {
     console.log;
     return Math.max(leftHeight, rightHeight);
   }
+
+  /**
+   * Returns the height of a value in the tree
+   * @param {*} value
+   * @returns The height of the value, or null if it isn't found
+   */
   height(value) {
     let node = this.find(value);
     if (node == null) return null;
     return this.#heightHelper(node, 0);
   }
 
+  /**
+   * Returns the depth of a value in the tree
+   * @param {*} value
+   * @returns The depth of the value, or null if it isn't found
+   */
   depth(value) {
     let currentNode = this.root;
     let depth = 0;
@@ -214,6 +285,11 @@ export class Tree {
     return null;
   }
 
+  /**
+   * Recursive helper function for isBalanced.
+   * @param {*} node
+   * @returns true if both children of a node are balanced
+   */
   #isBalancedHelper(node) {
     if (node == null) return true;
     let balanced =
@@ -226,10 +302,17 @@ export class Tree {
       balanced
     );
   }
+
+  /**
+   * Returns whether the tree is balanced or not
+   */
   isBalanced() {
     return this.#isBalancedHelper(this.root);
   }
 
+  /**
+   * Rebalances the tree
+   */
   rebalance() {
     let values = [];
     this.inorder((node) => {
