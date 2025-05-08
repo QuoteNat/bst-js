@@ -1,0 +1,3 @@
+[submodule "odin-recursion"]
+	path = odin-recursion
+	url = git@github.com:QuoteNat/odin-recursion.git
