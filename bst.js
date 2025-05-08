@@ -179,6 +179,8 @@ export class Tree {
   }
 
   #heightHelper(node, depth) {
+    if (node == null) return true;
+
     let leftHeight = depth;
     let rightHeight = depth;
     if (node.left != null) {
@@ -210,5 +212,21 @@ export class Tree {
     }
     if (currentNode) return depth;
     return null;
+  }
+
+  #isBalancedHelper(node) {
+    if (node == null) return true;
+    let balanced =
+      Math.abs(
+        this.#heightHelper(node.left, 1) - this.#heightHelper(node.right, 1)
+      ) <= 1;
+    return (
+      this.#isBalancedHelper(node.left) &&
+      this.#isBalancedHelper(node.right) &&
+      balanced
+    );
+  }
+  isBalanced() {
+    return this.#isBalancedHelper(this.root);
   }
 }

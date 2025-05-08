@@ -44,3 +44,17 @@ testTree.postorder((node) => console.log(node.value));
 
 console.log("Height of root: " + testTree.height(23));
 console.log("Depth of 6345: " + testTree.height(6345));
+
+let testBalanceArray = [];
+for (let i = 0; i < 10; i++) {
+  testBalanceArray.push(Math.floor(Math.random() * 100));
+}
+
+testTree.buildTree(testBalanceArray);
+prettyPrint(testTree.root);
+console.log(testTree.isBalanced());
+testTree.insert(101);
+testTree.insert(102);
+testTree.insert(103);
+prettyPrint(testTree.root);
+console.log(testTree.isBalanced());
