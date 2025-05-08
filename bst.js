@@ -37,5 +37,26 @@ export class Tree {
     this.root = balance(sorted);
   }
 
-  insert(value) {}
+  insert(value) {
+    let currentNode = this.root;
+    while (currentNode !== null) {
+      let comparison = this.comparison(value, currentNode.value);
+      // If less than value
+      if (comparison) {
+        if (currentNode.left == null) {
+          currentNode.left = new Node(value);
+          return;
+        } else {
+          currentNode = currentNode.left;
+        }
+      } else {
+        if (currentNode.right == null) {
+          currentNode.right = new Node(value);
+          return;
+        } else {
+          currentNode = currentNode.right;
+        }
+      }
+    }
+  }
 }
