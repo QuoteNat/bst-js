@@ -31,3 +31,4 @@ testTree.delete(8);
 prettyPrint(testTree.root);
 console.log("Find 6345: " + JSON.stringify(testTree.find(6345)));
 console.log("Find 88: " + testTree.find(88));
+testTree.levelOrder((node) => console.log(node.value));

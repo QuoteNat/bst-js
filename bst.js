@@ -143,4 +143,16 @@ export class Tree {
     if (currentNode) return currentNode;
     return null;
   }
+
+  levelOrder(callback = null) {
+    if (callback == null) throw new Error("levelOrder requires a callback");
+
+    let queue = [this.root];
+    while (queue.length > 0) {
+      let currentNode = queue.shift();
+      if (currentNode.left != null) queue.push(currentNode.left);
+      if (currentNode.right != null) queue.push(currentNode.right);
+      callback(currentNode);
+    }
+  }
 }
