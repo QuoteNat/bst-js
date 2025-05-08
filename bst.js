@@ -195,4 +195,20 @@ export class Tree {
     if (node == null) return null;
     return this.#heightHelper(node, 0);
   }
+
+  depth(value) {
+    let currentNode = this.root;
+    let depth = 0;
+    while (currentNode !== null && currentNode.value !== value) {
+      let comparison = this.comparison(value, currentNode.value);
+      if (comparison) {
+        currentNode = currentNode.left;
+      } else {
+        currentNode = currentNode.right;
+      }
+      depth += 1;
+    }
+    if (currentNode) return depth;
+    return null;
+  }
 }

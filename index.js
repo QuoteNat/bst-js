@@ -43,3 +43,4 @@ console.log("Postorder traversal:");
 testTree.postorder((node) => console.log(node.value));
 
 console.log("Height of root: " + testTree.height(23));
+console.log("Depth of 6345: " + testTree.height(6345));
